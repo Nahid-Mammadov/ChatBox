@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  </head>
+
+  <body>
+    <!-- DELETE CONFIRM MODAL -->
+    <div id="deleteModal" class="delete-modal hidden">
+      <div class="delete-box">
+        <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+        <h2>Are you sure?</h2>
+        <p>This action cannot be undone!</p>
+
+        <div class="delete-actions">
+          <button id="cancelDelete" class="cancel-btn">Cancel</button>
+          <button id="confirmDelete" class="delete-btn">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIFICATION -->
+    <div id="notifyBox" class="notify hidden"></div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <h2 class="logo">Admin Panel</h2>
+
+      <ul>
+        <li class="active"><i class="fa-solid fa-table"></i> Users</li>
+        <li id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+      </ul>
+    </div>
+
+    <!-- MAIN PANEL -->
+    <div class="main">
+      <div class="header">
+        <h1>User Management</h1>
+        <p>Welcome, <span id="userEmail"></span></p>
+      </div>
+
+      <button id="openAddModal" class="add-btn">
+        <i class="fa-solid fa-user-plus"></i> Add New User
+      </button>
+
+      <!-- USER TABLE -->
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Password (hashed)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody id="userTableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- ADD / EDIT USER MODAL -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <h2 id="modalTitle">Add User</h2>
+
+        <input id="modFirstname" type="text" placeholder="Firstname" />
+        <input id="modLastname" type="text" placeholder="Lastname" />
+        <input id="modEmail" type="text" placeholder="Email" />
+        <input id="modPassword" type="password" placeholder="Password (optional)" />
+
+        <button id="saveUserBtn" class="save-btn">Save</button>
+        <button id="closeModal" class="close-btn">Cancel</button>
+      </div>
+    </div>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

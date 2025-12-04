@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat</title>
+
+    <link rel="stylesheet" href="./Chat.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  </head>
+
+  <body>
+    <div class="chat-container">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="search-box">
+          <i class="fa fa-search"></i>
+          <input type="text" placeholder="Search users..." id="searchUser" />
+        </div>
+
+        <div class="user-list" id="userList"></div>
+
+        <!-- LOGOUT BUTTON -->
+        <button id="logoutBtn" class="logout-btn">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </aside>
+
+      <!-- CHAT AREA -->
+      <main class="chat-area">
+        <div class="chat-header" id="chatHeader">
+          <img id="chatUserPhoto" src="https://i.pravatar.cc/150?img=1" />
+          <div>
+            <h3 id="chatUserName">Select a user</h3>
+            <p id="chatUserStatus">Offline</p>
+          </div>
+        </div>
+
+        <div class="messages" id="messagesContainer"></div>
+
+        <!-- INPUT -->
+        <div class="chat-input">
+          <i class="fa fa-smile" id="emojiBtn"></i>
+
+          <!-- EMOJI PANEL -->
+          <div id="emojiPicker" class="emoji-picker hidden">
+            <span>😀</span><span>😁</span><span>😂</span><span>🤣</span>
+            <span>😊</span><span>😍</span><span>😘</span><span>😎</span>
+            <span>🤔</span><span>🙄</span><span>😭</span><span>😡</span>
+            <span>👍</span><span>👎</span><span>👏</span><span>🙌</span>
+            <span>❤️</span><span>💔</span><span>🔥</span><span>⭐</span>
+          </div>
+
+          <input
+            type="text"
+            id="messageInput"
+            placeholder="Type your message..."
+          />
+
+          <button class="send-btn" id="sendMessageBtn">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </main>
+    </div>
+
+    <script src="./Chat.js"></script>
+  </body>
+</html>
