@@ -61,6 +61,6 @@ form.addEventListener("submit", async (e) => {
 
   // 2 saniyə sonra yönləndir
   setTimeout(() => {
-    window.location.href = "./Chat.html";
+    window.location.href = "./Home.html";
   }, 1200);
 });
