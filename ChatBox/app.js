@@ -1,23 +1,23 @@
-const express = require('express')
-const app = express()
-const cors = require('cors');
-const port = 8080
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 require("dotenv").config();
-require('./src/config/db');
+require("./src/config/db");
+
 const adminRouter = require("./src/router/AdminRouter");
+const chatRouter = require("./src/router/ChatRouter");
 
-var bodyParser = require("body-parser");
-app.use(bodyParser.json());
+const app = express();
+
 app.use(cors());
+app.use(bodyParser.json());
 app.use(express.json());
+
 app.use("/api", adminRouter);
+app.use("/api/chat", chatRouter);
 
+app.get("/", (req, res) => {
+  res.send("API working...");
+});
 
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+module.exports = app;
