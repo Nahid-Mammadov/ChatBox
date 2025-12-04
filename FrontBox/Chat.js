@@ -8,7 +8,7 @@ const userName = localStorage.getItem("userName");
 // MƏCBURİ YOXLAMALAR — ƏGƏR YOXDURSA LOGINƏ QAYTAR
 if (!userId || !userName) {
   alert("User info missing! Please login again.");
-  window.location.href = "login.html";
+  window.location.href = "home.html";
 }
 
 // ================= ELEMENTS =================
@@ -150,5 +150,5 @@ emojiPicker.addEventListener("click", (e) => {
 // ================= LOGOUT =================
 logoutBtn.addEventListener("click", () => {
   localStorage.clear();
-  window.location.href = "login.html";
+  window.location.href = "home.html";
 });
