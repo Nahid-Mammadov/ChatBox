@@ -3,14 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Panel</title>
+    <title>Home</title>
     <link rel="stylesheet" href="home.css" />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
   </head>
+  <script>
+    function logoutUser() {
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+  </script>
 
   <!-- AI Chatbox -->
   <script>
@@ -31,7 +42,7 @@
       const onLoad = function () {
         const script = document.createElement("script");
         script.src = "https://www.chatbase.co/embed.min.js";
-        script.id = "kFk6XKKAkv_RfCNNRFdQl"; // Chatbase Agent ID
+        script.id = "kFk6XKKAkv_RfCNNRFdQl";
         script.domain = "www.chatbase.co";
         document.body.appendChild(script);
       };
@@ -42,79 +53,82 @@
   </script>
 
   <body>
-    <!-- DELETE CONFIRM MODAL -->
-    <div id="deleteModal" class="delete-modal hidden">
-      <div class="delete-box">
-        <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
-        <h2>Are you sure?</h2>
-        <p>This action cannot be undone!</p>
-
-        <div class="delete-actions">
-          <button id="cancelDelete" class="cancel-btn">Cancel</button>
-          <button id="confirmDelete" class="delete-btn">Delete</button>
-        </div>
+    <!-- Modern Navbar -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <h2 class="logo">MyWebsite</h2>
       </div>
-    </div>
 
-    <!-- NOTIFICATION -->
-    <div id="notifyBox" class="notify hidden"></div>
-
-    <div class="sidebar">
-      <h2 class="logo">Admin Panel</h2>
-
-      <ul>
-        <li class="active"><i class="fa-solid fa-table"></i> Users</li>
-        <li id="logoutBtn">
-          <i class="fa-solid fa-right-from-bracket"></i> Logout
-        </li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#">Home</a></li>
+        <li><a href="./Chat.html">Chat</a></li>
+        <li><a href="#">About</a></li>
       </ul>
-    </div>
 
-    <div class="main">
-      <div class="header">
-        <h1>User Management</h1>
-        <p>Welcome, <span id="userEmail"></span></p>
+      <!-- RIGHT SIDE: Admin Panel + Logout Icon -->
+      <div class="nav-actions">
+        <button onclick="window.location.href='login.html'" class="admin-btn">
+          Admin Panel
+        </button>
+
+        <i class="fa-solid fa-user logout-icon" onclick="logoutUser()"></i>
       </div>
 
-      <button id="openAddModal" class="add-btn">
-        <i class="fa-solid fa-user-plus"></i> Add New User
-      </button>
+      <i class="fa-solid fa-bars hamburger" onclick="toggleMenu()"></i>
+    </nav>
 
-      <table class="user-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
-            <th>Password (hashed)</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+    <!-- Swiper Slider -->
+    <section class="hero-section">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img
+              src="https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&w=1200"
+            />
+            <div class="slide-text">Welcome to Our Platform</div>
+          </div>
 
-        <tbody id="userTableBody"></tbody>
-      </table>
-    </div>
+          <div class="swiper-slide">
+            <img
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&w=1200"
+            />
+            <div class="slide-text">Connect • Chat • Explore</div>
+          </div>
 
-    <!-- ADD / EDIT MODAL -->
-    <div id="modal" class="modal hidden">
-      <div class="modal-content">
-        <h2 id="modalTitle">Add User</h2>
+          <div class="swiper-slide">
+            <img
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&w=1200"
+            />
+            <div class="slide-text">Modern. Fast. Secure.</div>
+          </div>
+        </div>
 
-        <input id="modFirstname" type="text" placeholder="Firstname" />
-        <input id="modLastname" type="text" placeholder="Lastname" />
-        <input id="modEmail" type="text" placeholder="Email" />
-        <input
-          id="modPassword"
-          type="password"
-          placeholder="Password (optional)"
-        />
-
-        <button id="saveUserBtn" class="save-btn">Save</button>
-        <button id="closeModal" class="close-btn">Cancel</button>
+        <div class="swiper-pagination"></div>
       </div>
-    </div>
+    </section>
 
-    <script src="home.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+      function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("open");
+      }
+
+      // Swiper setup
+      var swiper = new Swiper(".mySwiper", {
+        effect: "fade",
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        speed: 900,
+        loop: true,
+      });
+    </script>
   </body>
 </html>

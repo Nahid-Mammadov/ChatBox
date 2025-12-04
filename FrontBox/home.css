@@ -1,222 +1,169 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
+/* GLOBAL */
 body {
-  display: flex;
-  background: #1a1a2e;
-  color: #fff;
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #f4f6fa;
+  overflow-y: hidden; /* scroll bar silindi */
 }
 
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 25px 20px;
-}
-
-.logo {
-  font-size: 23px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.sidebar ul li {
-  padding: 12px;
-  margin: 10px 0;
-  cursor: pointer;
-  border-radius: 6px;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.sidebar ul li:hover,
-.active {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Main */
-.main {
-  flex: 1;
-  padding: 40px;
-}
-
-.add-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background: #0f3460;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 6px;
-}
-
-.add-btn:hover {
-  background: #1a4fa3;
-}
-
-/* User Table */
-.user-table {
+/* NAVBAR --------------------------------------------------*/
+.navbar {
   width: 100%;
-  margin-top: 30px;
-  border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
+  height: 70px;
+  padding: 15px 30px;
+  background: linear-gradient(90deg, #1e1e2f, #343457);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
-.user-table th,
-.user-table td {
-  padding: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* Left Logo */
+.logo {
+  font-size: 24px;
+  font-weight: 700;
 }
 
-.user-table tr:hover {
+/* Middle Menu */
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-left: 40px;
+}
+
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #7cd0ff;
+}
+
+/* RIGHT SIDE: Admin + Logout */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.admin-btn {
+  padding: 8px 16px;
+  background: #4da3ff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.admin-btn:hover {
+  background: #76bdff;
+}
+
+/* Logout Icon */
+.logout-icon {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+  color: white;
+}
+
+.logout-icon:hover {
   background: rgba(255, 255, 255, 0.15);
 }
 
-.action-btn {
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal.hidden {
+/* MOBILE MENU -------------------------------------------*/
+.hamburger {
   display: none;
-}
-
-.modal-content {
-  width: 350px;
-  padding: 25px;
-  background: #16213e;
-  border-radius: 10px;
-}
-
-.modal-content input {
-  width: 100%;
-  padding: 10px;
-  margin: 12px 0;
-  border: none;
-  border-radius: 6px;
-}
-
-.save-btn {
-  width: 100%;
-  padding: 10px;
-  background: #0f3460;
-  border: none;
-  border-radius: 6px;
+  font-size: 26px;
   cursor: pointer;
 }
 
-.close-btn {
-  width: 100%;
-  padding: 10px;
-  background: #e74c3c;
-  border: none;
-  margin-top: 10px;
-  border-radius: 6px;
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: -260px;
+    width: 230px;
+    background: #2a2a3d;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    z-index: 999;
+  }
+
+  .nav-links.open {
+    right: 20px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-actions {
+    display: none; /* mobile üçün sağ hissə gizlədilir */
+  }
 }
 
-/* DELETE MODAL */
-.delete-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* HERO SECTION (SWIPER) ----------------------------------*/
+.hero-section {
+  width: 100%;
+  height: calc(100vh - 70px); /* navbar çıxılır */
+  margin-top: 70px;
+}
+
+.mySwiper {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.65);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9998;
 }
 
-.delete-modal.hidden {
-  display: none;
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-.delete-box {
-  width: 330px;
-  padding: 25px;
-  background: #16213e;
-  border-radius: 10px;
-  text-align: center;
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
 }
 
-.warning-icon {
+/* Slider text */
+.slide-text {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  color: white;
   font-size: 40px;
-  color: #e74c3c;
-  margin-bottom: 10px;
+  font-weight: bold;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  animation: fadeText 1s ease forwards;
 }
 
-.delete-actions {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.cancel-btn {
-  padding: 10px 18px;
-  background: #555;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  color: #fff;
-}
-
-.delete-btn {
-  padding: 10px 18px;
-  background: #e74c3c;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  color: #fff;
-}
-
-/* Notification */
-.notify {
-  position: fixed;
-  top: 20px;
-  right: -300px;
-  background: #0f3460;
-  color: #fff;
-  padding: 12px 18px;
-  border-radius: 6px;
-  transition: 0.4s ease;
-  z-index: 9999;
-}
-
-.notify.show {
-  right: 20px;
-}
-
-.notify.success {
-  border-left: 4px solid #4caf50;
-}
-
-.notify.error {
-  border-left: 4px solid #e74c3c;
-}
-
-.notify.delete {
-  border-left: 4px solid #e74c3c;
-  background: rgba(255, 0, 0, 0.3);
+@keyframes fadeText {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

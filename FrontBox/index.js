@@ -50,8 +50,17 @@ form.addEventListener("submit", async (e) => {
 
   showNotify("Login successful!", "success");
 
+  // ================================
+  // 🔥 Chat üçün user məlumatını saxla
+  // ================================
+  const user = data.user;
+
+  localStorage.setItem("userId", user._id);
+  localStorage.setItem("userName", `${user.firstname} ${user.lastname}`);
+  localStorage.setItem("loggedEmail", user.email);
+
   // 2 saniyə sonra yönləndir
   setTimeout(() => {
-    window.location.href = "./home.html"; // istədiyin səhifəni yaz
-  }, 2000);
+    window.location.href = "./Chat.html";
+  }, 1200);
 });
