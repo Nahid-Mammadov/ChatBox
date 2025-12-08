@@ -16,6 +16,8 @@ app.use(express.json());
 app.use("/api", adminRouter);
 app.use("/api/chat", chatRouter);
 
+app.use("/api/reviews", require("./src/router/reviewRoutes"));
+
 app.get("/", (req, res) => {
   res.send("API working...");
 });
