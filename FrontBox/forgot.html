@@ -1,36 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Forgot Password</title>
+    <title data-key="forgotTitle">Forgot Password</title>
     <link rel="stylesheet" href="index.css" />
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Dil seçimi (sağ yuxarıda sabit görünəcək) -->
+    <div class="language-box">
+      <select id="languageSelect" class="lang-select">
+        <option value="az">AZ</option>
+        <option value="en">EN</option>
+        <option value="tr">TR</option>
+      </select>
+    </div>
+
     <section class="container">
-        <div class="login-container">
-            <div class="circle circle-one"></div>
+      <div class="login-container">
+        <div class="circle circle-one"></div>
 
-            <div class="form-container">
-                <h1 class="opacity">FORGOT PASSWORD</h1>
+        <div class="form-container">
+          <h1 class="opacity" data-key="forgotTitle">Parolu Unutdunuz?</h1>
 
-                <form id="forgotForm">
-                    <input id="email" type="text" placeholder="Enter your email" />
-                    <button class="opacity" type="submit">VERIFY EMAIL</button>
-                </form>
+          <form id="forgotForm">
+            <input
+              id="email"
+              type="text"
+              placeholder="E-poçtunuzu daxil edin"
+              data-key="forgotEmailPlaceholder"
+            />
+            <button class="opacity" type="submit" data-key="verifyEmailBtn">
+              E-poçtu təsdiqlə
+            </button>
+          </form>
 
-                <div class="register-forget opacity">
-                    <a href="index.html">LOGIN</a>
-                </div>
-            </div>
-
-            <div class="circle circle-two"></div>
+          <div class="register-forget opacity">
+            <a href="index.html" data-key="loginLink">Giriş</a>
+          </div>
         </div>
+
+        <div class="circle circle-two"></div>
+      </div>
     </section>
 
-    <!-- Modern notification -->
     <div id="notifyBox" class="notify hidden"></div>
 
+    <script type="module" src="./language.js"></script>
     <script src="forgot.js"></script>
-</body>
+  </body>
 </html>

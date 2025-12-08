@@ -1,3 +1,28 @@
+import { translations } from "./translations.js";
+const langSelect = document.getElementById("languageSelect");
+const elements = document.querySelectorAll("[data-key]");
+
+// Əvvəlki dili localStorage-dən yüklə
+const savedLang = localStorage.getItem("language") || "az";
+langSelect.value = savedLang;
+setLanguage(savedLang);
+
+// Dil dəyişildikdə
+langSelect.addEventListener("change", (e) => {
+  const selectedLang = e.target.value;
+  localStorage.setItem("language", selectedLang);
+  setLanguage(selectedLang);
+});
+
+function setLanguage(lang) {
+  elements.forEach((el) => {
+    const key = el.getAttribute("data-key");
+    if (translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+}
+
 const API = "http://localhost:8080/api/admin";
 
 const tableBody = document.getElementById("userTableBody");
@@ -141,3 +166,7 @@ logoutBtn.addEventListener("click", () => {
   localStorage.clear();
   window.location.href = "index.html";
 });
+
+
+
+

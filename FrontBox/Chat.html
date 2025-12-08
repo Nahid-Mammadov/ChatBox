@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat</title>
+    <title data-key="chat">Chat</title>
 
     <link rel="stylesheet" href="./Chat.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
   </head>
 
@@ -20,14 +19,20 @@
       <aside class="sidebar">
         <div class="search-box">
           <i class="fa fa-search"></i>
-          <input type="text" placeholder="Search users..." id="searchUser" />
+          <input
+            type="text"
+            id="searchUser"
+            placeholder="Search users..."
+            data-key="searchPlaceholder"
+          />
         </div>
 
         <div class="user-list" id="userList"></div>
 
         <!-- LOGOUT BUTTON -->
         <button id="logoutBtn" class="logout-btn">
-          <i class="fa-solid fa-right-from-bracket"></i> Logout
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span data-key="logout">Logout</span>
         </button>
       </aside>
 
@@ -36,8 +41,8 @@
         <div class="chat-header" id="chatHeader">
           <img id="chatUserPhoto" src="https://i.pravatar.cc/150?img=1" />
           <div>
-            <h3 id="chatUserName">Select a user</h3>
-            <p id="chatUserStatus">Offline</p>
+            <h3 id="chatUserName" data-key="selectUser">Select a user</h3>
+            <p id="chatUserStatus" data-key="offline">Offline</p>
           </div>
         </div>
 
@@ -60,6 +65,7 @@
             type="text"
             id="messageInput"
             placeholder="Type your message..."
+            data-key="messagePlaceholder"
           />
 
           <button class="send-btn" id="sendMessageBtn">
@@ -69,6 +75,16 @@
       </main>
     </div>
 
+    <!-- LANGUAGE DROPDOWN FIXED (BOTTOM RIGHT) -->
+    <div class="language-box">
+      <select id="languageSelect" class="lang-select">
+        <option value="az">AZ</option>
+        <option value="en">EN</option>
+        <option value="tr">TR</option>
+      </select>
+    </div>
+
+    <script type="module" src="./language.js"></script>
     <script src="./Chat.js"></script>
   </body>
 </html>

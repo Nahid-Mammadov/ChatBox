@@ -3,129 +3,132 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title data-key="home">Home</title>
     <link rel="stylesheet" href="home.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-
-    <!-- Swiper CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
   </head>
-  <script>
-    function logoutUser() {
-      localStorage.clear();
-      window.location.href = "index.html";
-    }
-  </script>
-
-  <!-- AI Chatbox -->
-  <script>
-    (function () {
-      if (!window.chatbase || window.chatbase("getState") !== "initialized") {
-        window.chatbase = (...args) => {
-          if (!window.chatbase.q) window.chatbase.q = [];
-          window.chatbase.q.push(args);
-        };
-        window.chatbase = new Proxy(window.chatbase, {
-          get(target, prop) {
-            if (prop === "q") return target.q;
-            return (...args) => target(prop, ...args);
-          },
-        });
-      }
-
-      const onLoad = function () {
-        const script = document.createElement("script");
-        script.src = "https://www.chatbase.co/embed.min.js";
-        script.id = "kFk6XKKAkv_RfCNNRFdQl";
-        script.domain = "www.chatbase.co";
-        document.body.appendChild(script);
-      };
-
-      if (document.readyState === "complete") onLoad();
-      else window.addEventListener("load", onLoad);
-    })();
-  </script>
 
   <body>
-    <!-- Modern Navbar -->
+    <!-- Navbar -->
     <nav class="navbar">
       <div class="nav-left">
-        <h2 class="logo">MyWebsite</h2>
+        <h2 class="logo" data-key="home">MyWebsite</h2>
       </div>
 
       <ul class="nav-links" id="navLinks">
-        <li><a href="#">Home</a></li>
-        <li><a href="./Chat.html">Chat</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="#" data-key="home">Home</a></li>
+        <li><a href="./Chat.html" data-key="chat">Chat</a></li>
+        <li><a href="./about.html" data-key="about">About</a></li>
       </ul>
 
-      <!-- RIGHT SIDE: Admin Panel + Logout Icon -->
       <div class="nav-actions">
-        <button onclick="window.location.href='login.html'" class="admin-btn">
+        <select id="languageSelect" class="lang-select">
+          <option value="az">AZ</option>
+          <option value="en">EN</option>
+          <option value="tr">TR</option>
+        </select>
+        <button
+          onclick="window.location.href='login.html'"
+          class="admin-btn"
+          data-key="admin"
+        >
           Admin Panel
         </button>
+    <button class="logout-btn" onclick="logoutUser()">
+  <i class="fa-solid fa-right-from-bracket"></i>
+  <span data-key="logout">Çıxış</span>
+</button>
 
-        <i class="fa-solid fa-user logout-icon" onclick="logoutUser()"></i>
       </div>
 
       <i class="fa-solid fa-bars hamburger" onclick="toggleMenu()"></i>
     </nav>
 
-    <!-- Swiper Slider -->
+    <!-- Hero Section -->
     <section class="hero-section">
       <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img
-              src="https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&w=1200"
-            />
-            <div class="slide-text">Welcome to Our Platform</div>
-          </div>
+        <div class="swiper-slide">
+  <img src="https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&w=1200" />
+  <div class="slide-text" data-key="welcome">Welcome to Our Platform</div>
+</div>
 
-          <div class="swiper-slide">
-            <img
-              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&w=1200"
-            />
-            <div class="slide-text">Connect • Chat • Explore</div>
-          </div>
+<div class="swiper-slide">
+  <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&w=1200" />
+  <div class="slide-text" data-key="connect">Connect • Chat • Explore</div>
+</div>
 
-          <div class="swiper-slide">
-            <img
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&w=1200"
-            />
-            <div class="slide-text">Modern. Fast. Secure.</div>
-          </div>
-        </div>
+<div class="swiper-slide">
+  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&w=1200" />
+  <div class="slide-text" data-key="modern">Modern. Fast. Secure.</div>
+</div>
 
         <div class="swiper-pagination"></div>
       </div>
     </section>
 
-    <!-- Swiper JS -->
+    <!-- Info Section -->
+    <section class="info-section">
+      <div class="info-container">
+        <h1 data-key="welcome">Welcome to Our Digital Hub</h1>
+        <p data-key="description">
+          Explore a modern platform designed to connect people and ideas. Engage
+          in smart conversations, share knowledge, and experience seamless
+          interaction through our AI-powered system.
+        </p>
+        <div class="info-buttons">
+          <button class="learn-btn" data-key="learnMore">Learn More</button>
+          <button class="join-btn" data-key="joinNow">Join Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-left">
+          <h3>MyWebsite</h3>
+          <p data-key="footerText">Connecting People • Ideas • Innovation</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#" data-key="home">Home</a>
+          <a href="#" data-key="chat">Chat</a>
+          <a href="#" data-key="about">About</a>
+          <a href="#" data-key="contact">Contact</a>
+        </div>
+
+        <div class="footer-right">
+          <p>&copy; 2025 MyWebsite. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Swiper & Language -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="./language.js"></script>
 
     <script>
+      function logoutUser() {
+        localStorage.clear();
+        window.location.href = "index.html";
+      }
+
       function toggleMenu() {
         document.getElementById("navLinks").classList.toggle("open");
       }
 
-      // Swiper setup
       var swiper = new Swiper(".mySwiper", {
         effect: "fade",
-        autoplay: {
-          delay: 2500,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
+        autoplay: { delay: 2500, disableOnInteraction: false },
+        pagination: { el: ".swiper-pagination", clickable: true },
         speed: 900,
         loop: true,
       });

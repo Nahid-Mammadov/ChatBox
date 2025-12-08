@@ -1,38 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Verify Code</title>
+    <title data-key="verifyTitle">Verify Code</title>
     <link rel="stylesheet" href="index.css" />
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Dil seçimi (sağ yuxarıda sabit görünəcək) -->
+    <div class="language-box">
+      <select id="languageSelect" class="lang-select">
+        <option value="az">AZ</option>
+        <option value="en">EN</option>
+        <option value="tr">TR</option>
+      </select>
+    </div>
 
-<section class="container">
-    <div class="login-container">
+    <section class="container">
+      <div class="login-container">
         <div class="circle circle-one"></div>
 
         <div class="form-container">
-            <h1 class="opacity">Verify Code</h1>
+          <h1 class="opacity" data-key="verifyTitle">Kodu Təsdiqlə</h1>
 
-            <form id="verifyForm">
-                <input id="code" type="number" placeholder="Enter 6-digit code" required />
-                <button type="submit" class="opacity">Verify Code</button>
-            </form>
+          <form id="verifyForm">
+            <input
+              id="code"
+              type="number"
+              placeholder="6 rəqəmli kodu daxil edin"
+              required
+              data-key="verifyPlaceholder"
+            />
+            <button type="submit" class="opacity" data-key="verifyBtn">
+              Kodu Təsdiqlə
+            </button>
+          </form>
 
-            <div class="register-forget opacity">
-                <a href="index.html">Login</a>
-            </div>
+          <div class="register-forget opacity">
+            <a href="index.html" data-key="loginLink">Giriş</a>
+          </div>
         </div>
 
         <div class="circle circle-two"></div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- Modern notification -->
-<div id="notifyBox" class="notify hidden"></div>
+    <div id="notifyBox" class="notify hidden"></div>
 
-<script src="./verify-code.js"></script>
-
-</body>
+    <!-- Çoxdilli sistem -->
+    <script type="module" src="./language.js"></script>
+    <script src="./verify-code.js"></script>
+  </body>
 </html>

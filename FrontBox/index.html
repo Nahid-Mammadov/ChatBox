@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title data-key="login">Login</title>
     <link rel="stylesheet" href="index.css" />
     <link
       rel="stylesheet"
@@ -11,10 +11,21 @@
     />
   </head>
   <body>
+    <!-- Ulduzlu fon -->
     <div class="stars"></div>
     <div class="stars2"></div>
     <div class="stars3"></div>
 
+    <!-- Dil seçimi (sağ yuxarıda sabit görünəcək) -->
+    <div class="language-box">
+      <select id="languageSelect" class="lang-select">
+        <option value="az">AZ</option>
+        <option value="en">EN</option>
+        <option value="tr">TR</option>
+      </select>
+    </div>
+
+    <!-- LOGIN FORM -->
     <section class="container">
       <div class="login-container">
         <div class="circle circle-one"></div>
@@ -25,22 +36,36 @@
             class="illustration"
           />
 
-          <h1 class="opacity">Giriş</h1>
+          <h1 class="opacity" data-key="loginTitle">Giriş</h1>
 
           <form id="loginForm">
-            <input id="email" type="text" placeholder="E-poçt" />
+            <input
+              id="email"
+              type="text"
+              placeholder="E-poçt"
+              data-key="emailPlaceholder"
+            />
 
             <div class="password-wrapper">
-              <input id="password" type="password" placeholder="Şifrə" />
+              <input
+                id="password"
+                type="password"
+                placeholder="Şifrə"
+                data-key="passwordPlaceholder"
+              />
               <i id="togglePassword" class="fa-solid fa-eye eye-icon"></i>
             </div>
 
-            <button class="opacity">Daxil ol</button>
+            <button class="opacity" type="submit" data-key="loginBtn">
+              Daxil ol
+            </button>
           </form>
 
           <div class="register-forget opacity">
-            <a href="./register.html">Qeydiyyatdan keç</a>
-            <a href="./forgot.html">Parolu unuttum?</a>
+            <a href="./register.html" data-key="register">Qeydiyyatdan keç</a>
+            <a href="./forgot.html" data-key="forgotPassword"
+              >Parolu unuttum?</a
+            >
           </div>
         </div>
 
@@ -50,9 +75,9 @@
       <div class="theme-btn-container"></div>
     </section>
 
-    <!-- Modern notification -->
     <div id="notifyBox" class="notify hidden"></div>
 
+    <script type="module" src="./language.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

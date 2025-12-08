@@ -333,3 +333,60 @@ input[type="number"] {
   position: relative;
   z-index: 99 !important;
 }
+.language-box {
+  position: fixed;
+  top: 15px;
+  right: 25px;
+  z-index: 9999;
+}
+
+.lang-select {
+  background: #0f3460;
+  color: white;
+  border: 1px solid #4da3ff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.lang-select:focus {
+  outline: none;
+  border-color: #76bdff;
+}
+
+.lang-select:hover {
+  background: #1a4fa3;
+}
+.lang-select option {
+  background: #0f3460;
+  color: white;
+}
+
+.language-box {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  z-index: 999;
+}
+
+.lang-select {
+  background: #1e1e2f;
+  color: white;
+  border: 1px solid #4da3ff;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.lang-select:hover {
+  background: #343457;
+  border-color: #76bdff;
+}
+.lang-select:focus {
+  outline: none;
+  border-color: #76bdff;
+}

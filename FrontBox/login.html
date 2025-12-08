@@ -4,32 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="login.css" />
   </head>
 
   <body>
+    <div class="background"></div>
+
     <div class="login-box">
-      <h2>Admin Login</h2>
+      <h2><i class="fa-solid fa-user-shield"></i> Admin Login</h2>
 
-      <input id="username" type="text" placeholder="Username" />
-      <input id="password" type="password" placeholder="Password" />
+      <div class="input-group">
+        <i class="fa-solid fa-user"></i>
+        <input id="username" type="text" placeholder="Username" />
+      </div>
 
-      <button onclick="login()" class="login-btn">Login</button>
+      <div class="input-group">
+        <i class="fa-solid fa-lock"></i>
+        <input id="password" type="password" placeholder="Password" />
+      </div>
 
-      <p id="errorMsg" style="color: red; margin-top: 10px"></p>
+      <button onclick="login()" class="login-btn">
+        <i class="fa-solid fa-right-to-bracket"></i> Login
+      </button>
+
+      <p id="errorMsg"></p>
     </div>
 
     <script>
       function login() {
-        const user = document.getElementById("username").value;
-        const pass = document.getElementById("password").value;
+        const user = document.getElementById("username").value.trim();
+        const pass = document.getElementById("password").value.trim();
+        const errorMsg = document.getElementById("errorMsg");
 
         if (user === "admin" && pass === "admin") {
           localStorage.setItem("isAdmin", "true");
           window.location.href = "admin.html";
         } else {
-          document.getElementById("errorMsg").innerText =
-            "Incorrect credentials!";
+          errorMsg.innerText = "Incorrect credentials!";
+          errorMsg.style.color = "#ff4d4d";
         }
       }
     </script>

@@ -1,19 +1,122 @@
-.login-box {
-  width: 300px;
-  margin: 100px auto;
-  padding: 25px;
-  border: 1px solid #ccc;
-  text-align: center;
-  border-radius: 8px;
-  background: #fafafa;
+/* --- Background gradient & blur --- */
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  overflow: hidden;
 }
 
-.login-btn {
-  padding: 10px 20px;
-  margin-top: 10px;
-  background: #28a745;
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top left, #0f3460, transparent 60%),
+    radial-gradient(circle at bottom right, #e94560, transparent 60%);
+  filter: blur(80px);
+  z-index: 0;
+}
+
+/* --- Login box --- */
+.login-box {
+  position: relative;
+  z-index: 10;
+  width: 360px;
+  padding: 40px 30px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  text-align: center;
   color: white;
+  animation: fadeIn 0.8s ease;
+}
+
+.login-box h2 {
+  margin-bottom: 25px;
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+.login-box i.fa-user-shield {
+  color: #00ffcc;
+  margin-right: 8px;
+}
+
+/* --- Input group --- */
+.input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  margin-bottom: 18px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.input-group:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.input-group i {
+  color: #00ffcc;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.input-group input {
   border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-size: 15px;
+  flex: 1;
+}
+
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* --- Button --- */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, #00ffcc, #0099ff);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+}
+
+/* --- Error message --- */
+#errorMsg {
+  margin-top: 12px;
+  color: #ff4d4d;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+/* --- Animation --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

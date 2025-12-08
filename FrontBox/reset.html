@@ -1,44 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reset Password</title>
+    <title data-key="resetTitle">Reset Password</title>
     <link rel="stylesheet" href="index.css" />
 
     <!-- FontAwesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Dil seçimi (sabit, sağ yuxarıda) -->
+    <div class="language-box">
+      <select id="languageSelect" class="lang-select">
+        <option value="az">AZ</option>
+        <option value="en">EN</option>
+        <option value="tr">TR</option>
+      </select>
+    </div>
+
     <section class="container">
-        <div class="login-container">
-            <div class="circle circle-one"></div>
+      <div class="login-container">
+        <div class="circle circle-one"></div>
 
-            <div class="form-container">
-                <h1 class="opacity">RESET PASSWORD</h1>
+        <div class="form-container">
+          <h1 class="opacity" data-key="resetTitle">Yeni Şifrə</h1>
 
-                <form id="resetForm">
-
-                    <div class="password-wrapper">
-                        <input id="newPassword" type="password" placeholder="New Password" />
-                        <i id="toggleResetPassword" class="fa-solid fa-eye eye-icon"></i>
-                    </div>
-
-                    <button class="opacity" type="submit">RESET PASSWORD</button>
-                </form>
-
-                <div class="register-forget opacity">
-                    <a href="index.html">LOGIN</a>
-                </div>
+          <form id="resetForm">
+            <div class="password-wrapper">
+              <input
+                id="newPassword"
+                type="password"
+                placeholder="Yeni şifrəni daxil edin"
+                data-key="resetPlaceholder"
+              />
+              <i id="toggleResetPassword" class="fa-solid fa-eye eye-icon"></i>
             </div>
 
-            <div class="circle circle-two"></div>
+            <button class="opacity" type="submit" data-key="resetBtn">
+              Şifrəni Yenilə
+            </button>
+          </form>
+
+          <div class="register-forget opacity">
+            <a href="index.html" data-key="loginLink">Giriş</a>
+          </div>
         </div>
+
+        <div class="circle circle-two"></div>
+      </div>
     </section>
 
-    <!-- Notification -->
     <div id="notifyBox" class="notify hidden"></div>
 
+    <!-- Çoxdilli sistem -->
+    <script type="module" src="./language.js"></script>
     <script src="reset.js"></script>
-</body>
+  </body>
 </html>

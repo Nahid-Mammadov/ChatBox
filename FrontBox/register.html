@@ -3,10 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
+    <title data-key="registerTitle">Register</title>
     <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
   <body>
+    <!-- Dil seçimi (sağ yuxarıda sabit görünəcək) -->
+    <div class="language-box">
+      <select id="languageSelect" class="lang-select">
+        <option value="az">AZ</option>
+        <option value="en">EN</option>
+        <option value="tr">TR</option>
+      </select>
+    </div>
+
     <section class="container">
       <div class="login-container">
         <div class="circle circle-one"></div>
@@ -17,20 +30,45 @@
             alt="illustration"
             class="illustration"
           />
-          <h1 class="opacity">REGISTER</h1>
+
+          <h1 class="opacity" data-key="registerTitle">Qeydiyyat</h1>
 
           <form id="registerForm">
-            <input id="regFirstname" type="text" placeholder="Firstname" />
-            <input id="regLastname" type="text" placeholder="Lastname" />
-            <input id="regEmail" type="text" placeholder="Email" />
-            <input id="regPassword" type="password" placeholder="Password" />
+            <input
+              id="regFirstname"
+              type="text"
+              placeholder="Ad"
+              data-key="firstnamePlaceholder"
+            />
+            <input
+              id="regLastname"
+              type="text"
+              placeholder="Soyad"
+              data-key="lastnamePlaceholder"
+            />
+            <input
+              id="regEmail"
+              type="text"
+              placeholder="E-poçt"
+              data-key="emailPlaceholder"
+            />
+            <input
+              id="regPassword"
+              type="password"
+              placeholder="Şifrə"
+              data-key="passwordPlaceholder"
+            />
 
-            <button class="opacity" type="submit">CREATE ACCOUNT</button>
+            <button class="opacity" type="submit" data-key="createAccount">
+              Hesab yarat
+            </button>
           </form>
 
           <div class="register-forget opacity">
-            <a href="index.html">LOGIN</a>
-            <a href="./forgot.html">FORGOT PASSWORD</a>
+            <a href="index.html" data-key="loginLink">Giriş</a>
+            <a href="./forgot.html" data-key="forgotPassword"
+              >Parolu unuttum?</a
+            >
           </div>
         </div>
 
@@ -40,9 +78,9 @@
       <div class="theme-btn-container"></div>
     </section>
 
-    <!-- Modern notification -->
     <div id="notifyBox" class="notify hidden"></div>
 
+    <script type="module" src="./language.js"></script>
     <script src="register.js"></script>
   </body>
 </html>

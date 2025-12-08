@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-key="about">Haqqımızda</title>
+    <link rel="stylesheet" href="about.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <h2 class="logo" data-key="home">MyWebsite</h2>
+      <ul class="nav-links">
+        <li><a href="Home.html" data-key="home">Home</a></li>
+        <li><a href="Chat.html" data-key="chat">Chat</a></li>
+        <li><a href="#" class="active" data-key="about">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <select id="languageSelect" class="lang-select">
+          <option value="az">AZ</option>
+          <option value="en">EN</option>
+          <option value="tr">TR</option>
+        </select>
+        <button onclick="window.location.href='login.html'" class="admin-btn" data-key="admin">
+          Admin Panel
+        </button>
+        <button class="logout-btn" onclick="logoutUser()">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span data-key="logout">Çıxış</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+      <div class="about-content">
+        <h1 data-key="aboutTitle">Haqqımızda</h1>
+        <p data-key="aboutDesc">
+          Biz modern texnologiya və insan mərkəzli yanaşmanı birləşdirərək,
+          məlumat paylaşımını, ünsiyyəti və idarəetməni daha sadə və etibarlı
+          edən rəqəmsal sistemlər yaradırıq. Missiyamız — fərdləri, komandaları
+          və müəssisələri eyni platformada birləşdirməkdir.
+        </p>
+        <div class="about-stats">
+          <div class="stat">
+            <h3 class="counter" data-target="1200">0</h3>
+            <p data-key="activeUsers">Aktiv istifadəçi</p>
+          </div>
+          <div class="stat">
+            <h3 class="counter" data-target="500">0</h3>
+            <p data-key="sharedArticles">Paylaşılan məqalə</p>
+          </div>
+          <div class="stat">
+            <h3 class="counter" data-target="5">0</h3>
+            <p data-key="yearsExperience">İllik təcrübə</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+      <h2 data-key="reviewsTitle">Müştəri Rəyləri</h2>
+
+      <div class="reviews-container">
+        <!-- Sol tərəf -->
+        <div class="swiper reviews-swiper">
+          <div class="swiper-wrapper" id="reviewsList"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Sağ tərəf -->
+        <div class="review-box">
+          <h3 data-key="writeReview">Rəyinizi yazın</h3>
+          <input type="text" id="nameInput" placeholder="Ad və Soyad" data-key="namePlaceholder" />
+          <textarea id="reviewInput" placeholder="Rəyiniz..." data-key="reviewPlaceholder"></textarea>
+          <div class="rating">
+            <span data-key="rating">Qiymət:</span> <br />
+            <div id="starContainer">
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+            <br />
+          </div>
+          <button id="submitBtn" data-key="submitReview">Rəyi göndər</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p data-key="footerText">&copy; 2025 MyWebsite. Bütün hüquqlar qorunur.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="./language.js"></script>
+    <script src="about.js"></script>
+
+    <script>
+      function logoutUser() {
+        localStorage.clear();
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

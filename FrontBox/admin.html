@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Panel</title>
     <link rel="stylesheet" href="admin.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
 
   <body>
@@ -15,7 +18,6 @@
         <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
         <h2>Are you sure?</h2>
         <p>This action cannot be undone!</p>
-
         <div class="delete-actions">
           <button id="cancelDelete" class="cancel-btn">Cancel</button>
           <button id="confirmDelete" class="delete-btn">Delete</button>
@@ -29,10 +31,11 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
       <h2 class="logo">Admin Panel</h2>
-
       <ul>
         <li class="active"><i class="fa-solid fa-table"></i> Users</li>
-        <li id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+        <li id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </li>
       </ul>
     </div>
 
@@ -59,9 +62,26 @@
             <th>Actions</th>
           </tr>
         </thead>
-
         <tbody id="userTableBody"></tbody>
       </table>
+
+      <!-- REVIEW TABLE -->
+      <section class="admin-reviews">
+        <h2 style="margin-top: 60px">İstifadəçi Rəyləri</h2>
+        <table class="user-table" id="reviewsTable">
+          <thead>
+            <tr>
+              <th>Avatar</th>
+              <th>Ad</th>
+              <th>Email</th>
+              <th>Rəy</th>
+              <th>Ulduz</th>
+              <th>Tarix</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
     </div>
 
     <!-- ADD / EDIT USER MODAL -->
@@ -72,13 +92,175 @@
         <input id="modFirstname" type="text" placeholder="Firstname" />
         <input id="modLastname" type="text" placeholder="Lastname" />
         <input id="modEmail" type="text" placeholder="Email" />
-        <input id="modPassword" type="password" placeholder="Password (optional)" />
+        <input
+          id="modPassword"
+          type="password"
+          placeholder="Password (optional)"
+        />
 
         <button id="saveUserBtn" class="save-btn">Save</button>
         <button id="closeModal" class="close-btn">Cancel</button>
       </div>
     </div>
 
-    <script src="admin.js"></script>
+    <script>
+      const API = "http://localhost:8080/api/admin";
+      const tableBody = document.getElementById("userTableBody");
+      const modal = document.getElementById("modal");
+      const modalTitle = document.getElementById("modalTitle");
+      const saveUserBtn = document.getElementById("saveUserBtn");
+      const notifyBox = document.getElementById("notifyBox");
+
+      let editUserId = null;
+      let deleteTargetId = null;
+
+      // NOTIFY
+      function showNotify(message, type = "success") {
+        notifyBox.textContent = message;
+        notifyBox.className = `notify show ${type}`;
+        setTimeout(() => notifyBox.classList.remove("show"), 2500);
+      }
+
+      // LOAD EMAIL
+      document.getElementById("userEmail").textContent =
+        localStorage.getItem("loggedEmail");
+
+      // OPEN ADD MODAL
+      document
+        .getElementById("openAddModal")
+        .addEventListener("click", () => {
+          modalTitle.textContent = "Add User";
+          editUserId = null;
+          modal.classList.remove("hidden");
+        });
+
+      // CLOSE MODAL
+      document.getElementById("closeModal").addEventListener("click", () => {
+        modal.classList.add("hidden");
+      });
+
+      // LOAD USERS
+      async function loadUsers() {
+        const res = await fetch(API);
+        const users = await res.json();
+        tableBody.innerHTML = "";
+
+        users.forEach((u) => {
+          tableBody.innerHTML += `
+            <tr>
+              <td>${u._id}</td>
+              <td>${u.firstname}</td>
+              <td>${u.lastname}</td>
+              <td>${u.email}</td>
+              <td>${u.password}</td>
+              <td>
+                <i class="fa-solid fa-pen action-btn" onclick="editUser('${u._id}')"></i>
+                <i class="fa-solid fa-trash action-btn" onclick="openDeleteModal('${u._id}')"></i>
+              </td>
+            </tr>
+          `;
+        });
+      }
+      loadUsers();
+
+      // EDIT USER
+      window.editUser = async function (id) {
+        const res = await fetch(`${API}/${id}`);
+        const user = await res.json();
+
+        editUserId = id;
+        modalTitle.textContent = "Edit User";
+        document.getElementById("modFirstname").value = user.firstname;
+        document.getElementById("modLastname").value = user.lastname;
+        document.getElementById("modEmail").value = user.email;
+        document.getElementById("modPassword").value = "";
+        modal.classList.remove("hidden");
+      };
+
+      // SAVE USER
+      saveUserBtn.addEventListener("click", async () => {
+        const firstname = document.getElementById("modFirstname").value.trim();
+        const lastname = document.getElementById("modLastname").value.trim();
+        const email = document.getElementById("modEmail").value.trim();
+        const password = document.getElementById("modPassword").value.trim();
+
+        if (!firstname || !lastname || !email) {
+          showNotify("All fields except password are required", "error");
+          return;
+        }
+
+        const body = { firstname, lastname, email };
+        if (password) body.password = password;
+
+        if (editUserId) {
+          await fetch(`${API}/${editUserId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+          showNotify("User updated!", "success");
+        } else {
+          await fetch(API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+          showNotify("User added!", "success");
+        }
+
+        modal.classList.add("hidden");
+        loadUsers();
+      });
+
+      // DELETE USER
+      window.openDeleteModal = function (id) {
+        deleteTargetId = id;
+        deleteModal.classList.remove("hidden");
+      };
+
+      cancelDelete.addEventListener("click", () => {
+        deleteModal.classList.add("hidden");
+      });
+
+      confirmDelete.addEventListener("click", async () => {
+        await fetch(`${API}/${deleteTargetId}`, { method: "DELETE" });
+        deleteModal.classList.add("hidden");
+        showNotify("User deleted!", "delete");
+        loadUsers();
+      });
+
+      // LOGOUT
+      logoutBtn.addEventListener("click", () => {
+        localStorage.clear();
+        window.location.href = "index.html";
+      });
+
+      // LOAD REVIEWS
+      async function loadAdminReviews() {
+        const res = await fetch("http://localhost:8080/api/reviews/all");
+        const data = await res.json();
+        const tbody = document.querySelector("#reviewsTable tbody");
+        tbody.innerHTML = "";
+
+        if (!data.length) {
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#999">Hələlik rəy yoxdur</td></tr>`;
+          return;
+        }
+
+        data.forEach((r) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td><img src="${r.avatar}" style="width:40px;height:40px;border-radius:50%"></td>
+            <td>${r.name}</td>
+            <td>${r.email}</td>
+            <td>${r.text}</td>
+            <td>${"⭐".repeat(r.rating)}</td>
+            <td>${new Date(r.createdAt).toLocaleDateString()}</td>`;
+          tbody.appendChild(tr);
+        });
+      }
+
+      loadAdminReviews();
+    </script>
   </body>
 </html>
