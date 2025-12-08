@@ -1,29 +1,47 @@
+// language.js
 import { translations } from "./translations.js";
 
-const langSelect = document.getElementById("languageSelect");
-const elements = document.querySelectorAll("[data-key]");
+function applyLanguage(lang) {
+  // Hər çağıranda DOM-dan yenidən oxuyaq
+  const elements = document.querySelectorAll("[data-key]");
 
-const savedLang = localStorage.getItem("language") || "az";
-setLanguage(savedLang);
-if (langSelect) langSelect.value = savedLang;
+  elements.forEach((el) => {
+    const key = el.getAttribute("data-key");
+    const value = translations[lang]?.[key];
+    if (!value) return; // Bu key üçün tərcümə yoxdursa, keç
 
-if (langSelect) {
-  langSelect.addEventListener("change", (e) => {
-    const lang = e.target.value;
-    localStorage.setItem("language", lang);
-    setLanguage(lang);
+    // INPUT / TEXTAREA placeholder
+    if (
+      (el.tagName === "INPUT" || el.tagName === "TEXTAREA") &&
+      el.hasAttribute("placeholder")
+    ) {
+      el.placeholder = value;
+    }
+    // <title data-key="...">
+    else if (el.tagName === "TITLE") {
+      document.title = value;
+    }
+    // Normal text content
+    else {
+      el.textContent = value;
+    }
   });
 }
 
-function setLanguage(lang) {
-  elements.forEach((el) => {
-    const key = el.getAttribute("data-key");
-    if (translations[lang][key]) {
-      if (el.placeholder !== undefined && el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-        el.placeholder = translations[lang][key];
-      } else {
-        el.textContent = translations[lang][key];
-      }
-    }
+// Dil seçimi elementi
+const langSelect = document.getElementById("languageSelect");
+
+// Saxlanmış dili götür
+const savedLang = localStorage.getItem("language") || "az";
+applyLanguage(savedLang);
+
+// Dropdownda default seçili dil
+if (langSelect) {
+  langSelect.value = savedLang;
+
+  langSelect.addEventListener("change", (e) => {
+    const lang = e.target.value;
+    localStorage.setItem("language", lang);
+    applyLanguage(lang);
   });
 }
