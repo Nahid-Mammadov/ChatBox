@@ -205,37 +205,3 @@ body {
   border-left: 4px solid #e74c3c;
   background: rgba(255, 0, 0, 0.3);
 }
-.container,
-.glass-box {
-  position: relative;
-  z-index: 99 !important;
-}
-.language-box {
-  position: fixed;
-  top: 15px;
-  right: 25px;
-  z-index: 9999;
-}
-
-.lang-select {
-  background: #0f3460;
-  color: white;
-  border: 1px solid #4da3ff;
-  border-radius: 6px;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.lang-select:focus {
-  outline: none;
-  border-color: #76bdff;
-}
-
-.lang-select:hover {
-  background: #1a4fa3;
-}
-.lang-select option {
-  background: #0f3460;
-  color: white;
-}

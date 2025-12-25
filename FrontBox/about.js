@@ -78,16 +78,17 @@ submitBtn.addEventListener("click", async () => {
   const text = document.getElementById("reviewInput").value.trim();
 
   // Məsələn, localStorage-də login olunmuş user məlumatı saxlanır:
-const user = JSON.parse(localStorage.getItem("user"));
-const email =
-  user?.email ||
-  user?.user?.email ||
-  localStorage.getItem("loggedEmail") ||
-  "guest@example.com";
-
+  const user = JSON.parse(localStorage.getItem("user"));
+  const email =
+    user?.email ||
+    user?.user?.email ||
+    localStorage.getItem("loggedEmail") ||
+    "guest@example.com";
 
   // Emailə görə stabil avatar yaradırıq:
-  const avatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(email)}`;
+  const avatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(
+    email
+  )}`;
 
   if (!name || !text || rating === 0) {
     alert("Zəhmət olmasa ad, rəy və ulduz daxil edin!");
@@ -110,7 +111,6 @@ const email =
     alert("Xəta baş verdi!");
   }
 });
-
 
 // 📊 Say göstəriciləri animasiyası
 const counters = document.querySelectorAll(".counter");

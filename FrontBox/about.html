@@ -30,7 +30,11 @@
           <option value="en">EN</option>
           <option value="tr">TR</option>
         </select>
-        <button onclick="window.location.href='login.html'" class="admin-btn" data-key="admin">
+        <button
+          onclick="window.location.href='login.html'"
+          class="admin-btn"
+          data-key="admin"
+        >
           Admin Panel
         </button>
         <button class="logout-btn" onclick="logoutUser()">
@@ -81,8 +85,17 @@
         <!-- Sağ tərəf -->
         <div class="review-box">
           <h3 data-key="writeReview">Rəyinizi yazın</h3>
-          <input type="text" id="nameInput" placeholder="Ad və Soyad" data-key="namePlaceholder" />
-          <textarea id="reviewInput" placeholder="Rəyiniz..." data-key="reviewPlaceholder"></textarea>
+          <input
+            type="text"
+            id="nameInput"
+            placeholder="Ad və Soyad"
+            data-key="namePlaceholder"
+          />
+          <textarea
+            id="reviewInput"
+            placeholder="Rəyiniz..."
+            data-key="reviewPlaceholder"
+          ></textarea>
           <div class="rating">
             <span data-key="rating">Qiymət:</span> <br />
             <div id="starContainer">
@@ -101,7 +114,9 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p data-key="footerText">&copy; 2025 MyWebsite. Bütün hüquqlar qorunur.</p>
+      <p data-key="footerText">
+        &copy; 2025 MyWebsite. Bütün hüquqlar qorunur.
+      </p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
